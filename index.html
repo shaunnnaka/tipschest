@@ -90,9 +90,17 @@
       <button class="go" v-on:click="search">検索 </button>
       
       <div id="itemArea">
-        <div  id="item" v-bind="orderedObj">
-          {{  orderedObj  }}
-        </div>
+        <div  id="item" v-for="item in orderedObj">
+          <br>
+          <a target="_blank"  href="clickcheck.php?id='+ pFinal[index]['id'] +'" >
+            <div class="item_block">
+              <div class="paper_title" >{{  item.title  }}</div>
+              <hr>
+              <div class="paper_author" id="item0a">{{  item.author  }} </div>
+              <div class="paper_field"> {{  item.field  }} </div>
+              <div class="paper_data"> {{  item.data  }}  </div>
+             </div>
+          </a>
       </div>
     </div>
       
@@ -105,4 +113,5 @@
   </div >
 
 </body>
+
 
