@@ -55,5 +55,5 @@ var jsonObj=[
         }
         this.orderedObj = tmpObj;
       }
-    },
+    }
   })
