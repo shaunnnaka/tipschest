@@ -1,4 +1,4 @@
-import paperList from './paperList.json'
+import paperList from './paperList.js'
 
 var app = new Vue({
     el: '#app',
