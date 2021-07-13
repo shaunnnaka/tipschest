@@ -1,10 +1,4 @@
-import papers from './paperList.json'
-
-export default {
-  data: () => {
-     jsonObj: papers
-  }
-} 
+import paperList from './paperList.json'
 
 var app = new Vue({
     el: '#app',
@@ -12,7 +6,8 @@ var app = new Vue({
       order: "upolder",
       field: "none",
       pref: "none",
-      orderedObj: [{"id":"0","title":"豪雪地帯における屋根の形状の移り変わりと特性", "author":"長野県飯山高等学校","pref":"長野県","field":"物理","data":"2019","url":"roof.pdf"}]
+      orderedObj: [{"id":"0","title":"豪雪地帯における屋根の形状の移り変わりと特性", "author":"長野県飯山高等学校","pref":"長野県","field":"物理","data":"2019","url":"roof.pdf"}],
+      jsonObj: paperList
     },
     methods:{
       search: function(event){
