@@ -94,7 +94,7 @@
       <div id="itemArea">
         <div  id="item" v-for="item in orderedObj">
           <br>
-          <a target="_blank"  href="clickcheck.php?id='+ pFinal[index]['id'] +'" >
+          <a target="_blank"  :href="item.url" >
             <div class="item_block">
               <div class="paper_title" >{{  item.title  }}</div>
               <hr>
