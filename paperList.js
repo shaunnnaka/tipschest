@@ -1,5 +1,4 @@
 let json = [
-  {"id":"0","title":"豪雪地帯における屋根の形状の移り変わりと特性", "author":"長野県飯山高等学校","pref":"長野県","field":"物理","data":"2019","url":"http://tipschest.com/paperfile/roof.pdf"},
 {"id":"1","title":"糸に伝わる音は縦波か横波か", "author":"千葉県立船橋高等学校","pref":"千葉県","field":"物理","data":"2019","url":"https://www.chiba-c.ed.jp/funako/fttp_kousin/ssh/reserch/2019/2019_01p1.pdf"},
 {"id":"2","title":"スティックスリップ現象の発生条件", "author":"千葉県立船橋高等学校","pref":"千葉県","field":"物理","data":"2019","url":"https://www.chiba-c.ed.jp/funako/fttp_kousin/ssh/reserch/2019/2019_02p2.pdf"},
 {"id":"3","title":"粗い面や濡れた粗面での乱反射における反射角と光量の関係", "author":"千葉県立船橋高等学校","pref":"千葉県","field":"物理","data":"2019","url":"https://www.chiba-c.ed.jp/funako/fttp_kousin/ssh/reserch/2019/2019_03p3.pdf"},
