@@ -1,0 +1,261 @@
+
+@import url("https://fonts.googleapis.com/cssfamily=Poppins:400,700");
+@import url("https://fonts.googleapis.com/earlyaccessnotosansjapanese.css");
+@import url("https://fonts.googleapis.com/iconfamily=Material+Icons");
+
+
+body {
+  letter-spacing: .03rem;
+  font-family: "Poppins", "Noto Sans Japanese", YuGothic, "-apple-system", "Helvetica Neue", Meiryo, sans-serif;
+  line-height: 1.35;
+  font-size: 16px;
+  color: #2C363A;
+  background-color: #fff;
+  margin: 0;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga", "kern";
+  width: 100%;
+  overflow-x: hidden;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+pre {
+  letter-spacing: .03rem;
+  font-family: "Poppins", "Noto Sans Japanese", YuGothic, "-apple-system", "Helvetica Neue", Meiryo, sans-serif;
+  line-height: 1.65 !important;
+  font-size: 16px;
+  color: #2C363A;
+  white-space: initial;
+}
+
+pre a, .tmp a {
+  color: #1A0DAB;
+}
+
+.tmp a span {
+  color: #2C363A;
+}
+
+a {
+  text-decoration: none;
+  color: #2C363A;
+}
+
+a:hover {
+  text-decoration: underline;
+  transition: all 0.3s ease;
+  color: #aaa;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+.about{
+  margin-top: 120px;
+  margin-left: 5vw;
+}
+.about h2{
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.about .accenthr{
+  width: 40px;
+  margin-top: 0;
+  margin-left: 0;
+  border-top: 1px solid #ED7D31;
+  border-bottom: transparent;
+}
+
+
+
+
+
+.paper_list{
+  font-size: 14px;
+  line-height: 1;
+  margin-bottom: 10px;
+  padding-top: 13px;
+  padding-bottom: 3px;
+  margin-left: 0%;
+  margin-top: 30px;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  width: 90%;
+  background-color: rgba(255, 255, 255, 0.315);
+  border: 2px solid #646464;
+}
+
+.select{
+  margin-right: 1%;
+  margin-left: 1%;
+  margin-bottom: 10px;
+  height: 40px;
+  width: 10%;
+}
+.searchGo{
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-bottom: 10px;
+  height: 40px;
+  width: 15%;
+}
+#item hr{
+  border-top: 1px dashed #bbb;
+  width: 90%;
+  text-decoration: none;
+  border-style: dashed;
+  color: black;
+ }
+
+
+.paper_list{
+  font-size: 14px;
+  line-height: 1;
+  margin-bottom: 10px;
+  padding-top: 13px;
+  padding-bottom: 3px;
+  margin-left: 0%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  width: 100%;
+  border: 1px solid #ED7D31;
+}
+
+
+.select{
+  margin-right: 1%;
+  margin-left: 1%;
+  margin-bottom: 10px;
+  height: 35px;
+  width: 15%;
+  color: #646464;
+  
+}
+.searchGo{
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-bottom: 10px;
+  height: 40px;
+  width: auto;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #646464;
+  color: #575757;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 9px;
+  padding-left: 15px;
+
+}
+
+.searchGo:hover{
+  cursor: pointer;
+}
+
+#itemArea{
+  display: inline-block;
+  text-align: left;
+  width: 100%;
+}
+.item_block{
+  border-color: #646464;
+  border-radius: 1px;
+  border-style: solid;
+  border-width: 1px;
+  padding-top: 10px;
+  padding-left: 10px;
+  margin: 2% 0% 0% 4%;
+  height: 80px;
+  width: 85vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  background-color: rgba(255, 255, 255, 0.199);
+  cursor: pointer;
+  float: left;
+}
+#item hr{
+border-top: 1px dashed #bbb;
+border-bottom: transparent;
+width: 80vw;
+text-decoration: none;
+border-style: dashed;
+color: #646464;
+}
+.paper_title{
+  font-size: 100%;
+  padding-bottom: 15px;
+  width: 100%;
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: 5px;
+  padding-top: 0px;
+  height: 25px;
+  display: inline-block;
+  color: #464646;
+}
+.paper_author{
+
+  height: 20px;
+  padding-left: 0px;
+  padding-top: inherit;
+  display: inline-block;
+  vertical-align: top;
+  color: #646464;
+}
+.paper_field{
+  height: 20px;
+  margin-right: 3%;
+  margin-left: 3%;
+  padding-top: inherit;
+  display: inline-block;
+  vertical-align: top;
+  color: #646464;
+}
+.paper_data{
+  height: 20px;
+  padding-left: 0px;
+  padding-top: inherit;
+  margin-left: 0;
+  margin-right: 0px;
+  display: inline-block;
+  vertical-align: top;
+  color: #646464;
+}
+
+.scroll-top{
+  position: fixed;
+  opacity: 0.85;
+  bottom: 3%;
+  right: -8%;
+  width: 20%;
+  height: 10%;
+  z-index: 10000;
+}
+.deeper{
+  width: auto;
+  display: inline-block; 
+  text-align: center; 
+  
+  border: 1px solid rgb(71, 71, 71);
+  color: rgb(71, 71, 71);
+  padding: 5px;
+  margin: 15px;
+}
+.deeper:hover{
+  cursor: pointer;
+}
