@@ -14,25 +14,25 @@ var app = new Vue({
         var tmpObj = this.jsonObj;
         let fi = this.field;
         if(this.field != "none"){
-          tmpObj = tmpObj.filter(function(a){
+          tmpObj.filter(function(a){
             return a.field === fi ;
           });
         }else{
-          
+
         }
         switch (this.order){
           case "upnewer":{
-            tmpObj = tmpObj.reverse();
+            tmpObj.reverse();
             break;
           }
           case "older":{
-            tmpObj = tmpObj.sort(function(a,b){
+            tmpObj.sort(function(a,b){
               return a.data - b.data
             })
             break;
           }
           case "newer":{
-            tmpObj = tmpObj.sort(function(a,b){
+            tmpObj.sort(function(a,b){
               return b.data - a.data
             })
             break;
