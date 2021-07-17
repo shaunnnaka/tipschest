@@ -17,6 +17,8 @@ var app = new Vue({
           tmpObj = tmpObj.filter(function(a){
             return a.field === fi ;
           });
+        }else{
+          
         }
         switch (this.order){
           case "upnewer":{
@@ -31,11 +33,12 @@ var app = new Vue({
           }
           case "newer":{
             tmpObj = tmpObj.sort(function(a,b){
-              return (a.data - b.data)
-            }).reverse();
+              return b.data - a.data
+            })
             break;
           }
           default:{
+
             break;
           }
         }
