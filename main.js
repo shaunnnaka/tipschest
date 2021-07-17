@@ -18,7 +18,9 @@ var app = new Vue({
             return a.field === fi ;
           });
         }else{
-
+          tmpObj.filter(function(a){
+            return true ;
+          });
         }
         switch (this.order){
           case "upnewer":{
