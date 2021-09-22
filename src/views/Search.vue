@@ -3,11 +3,15 @@
   <hr class='accenthr'>
   <div id="app">
     <div id="listing" class="paper_list">
-      <select class="select" id="sort_law" v-model="order">
-        <option value="upolder" >更新日時（昇順）</option>
-        <option value="upnewer" >更新日時（降順）</option>
-        <option value="older">出版年（昇順）</option>
-        <option value="newer">出版年（降順）</option>
+      <p>フリーワード</p><input type="text" v-model="keyword" name="s">
+
+      <select class="select" id="sort_asc" v-model="order">
+        <option value="asc" >昇順</option>
+        <option value="desc" >降順</option>
+      </select>
+      <select name="" id="release" v-model="release">
+        <option value="newer">新しい</option>
+        <option value="older">古い</option>
       </select>
       <select id="field" class="select" v-model="field">
           <option value="none">分野を選択</option>
@@ -81,10 +85,10 @@
         <option value="沖縄県">沖縄県</option>
         </select>
    
-      <button class="go" v-on:click="search">検索 </button>
+      <button class="go" v-on:click="sortBy(order,release,field, pref)">検索</button>
       
       <div id="itemArea">
-        <div  id="item" v-for="(item, key) in paperList" :key=key>
+        <div  id="item" v-for="(item, key) in ordered" :key=key>
           <br>
           <a target="_blank"  :href="item.url" >
             <div class="item_block">
@@ -97,72 +101,99 @@
           </a>
         </div>
       </div>
+      <!-- <div id="itemArea">
+        <div  id="item" v-for="(item, key) in search" :key=key>
+          <br>
+          <a target="_blank"  :href="item.url" >
+            <div class="item_block">
+              <div class="paper_title" >{{  item.title  }}</div>
+              <hr>
+              <div class="paper_author" id="item0a">{{  item.author  }} </div>
+              <div class="paper_field"> {{  item.field  }} </div>
+              <div class="paper_data"> {{  item.data  }}  </div>
+             </div>
+          </a>
+        </div>
+      </div> -->
     </div>
-      
-      
-      
-      <div id="deeperButtonArea"></div>
-      
+    
+    <div id="deeperButtonArea"></div>
     </div>
-
   </div >
 </template>
 
 <script>
-// import p from '@/assets/data/paperList.json'
-import pjs from '@/assets/data/json.js'
-
+import p from '@/assets/data/paperList.json'
 export default {
   data(){
     return {
-      // paperList: JSON.stringify(p),
-      paperList: pjs,
-      order: "upolder",
+      paper: p.list,
+      order: "asc",
       field: "none",
       pref: "none",
-      orderedObj: pjs,
-      jsonObj: pjs
+      release: "newer",
+      sort_key: ["none","none","none","none"],
+      sort_asc: true,
+      keyword: ''
     }
   },
-  // computed:{
-  //   search: function(){
-  //     var tmpObj = this.jsonObj;
-  //     let fi = this.field;
-  //     if(this.field != "none"){
-  //       tmpObj = tmpObj.filter(function(a){
-  //         return a.field === fi ;
-  //       });
-  //     }else{
-  //       tmpObj = tmpObj.filter(function(){
-  //         return true ;
-  //       });
-  //     }
-      
-  //     switch (this.order){
-  //       case "upnewer":{
-  //         tmpObj.reverse();
-  //         break;
-  //       }
-  //       case "older":{
-  //         tmpObj = tmpObj.sort(function(a,b){
-  //           return a.data - b.data
-  //         })
-  //         break;
-  //       }
-  //       case "newer":{
-  //         tmpObj = tmpObj.sort(function(a,b){
-  //           return b.data - a.data
-  //         })
-  //         break;
-  //       }
-  //       default:{
+  methods:{
+    sortBy(key1,key2,key3,key4){
+      this.sort_key = [key1,key2,key3,key4];
+      //order,release,field, pref
+      console.log("a");
+      console.log(key1,key2,key3,key4);
+      console.log(this.sort_key);
+      console.log(this.paper.reverse());
+    },
+    sort_release(obj, val){
+      if(val == "newer"){
+        obj.sort((a,b) => {
+          return a.data - b.data;
+        });
+      }else{
+        obj.sort((a,b) => {
+            return b.data - a.data;
+        });
+      }
+    }
+  },
+  computed: {
+    search: function() {
+      var tmp = [];
+      for(var i in this.paper) {
+        var p = this.paper[i];
+        if(p.title.indexOf(this.keyword) !== -1 ||
+          p.author.indexOf(this.keyword) !== -1 || 
+          p.pref.indexOf(this.keyword) !== -1 ||
+          p.data.indexOf(this.keyword) !== -1) {
+          tmp.push(p);
+        }
+      }
+      return tmp;
+    },
+    ordered: function() {
+      var tmp = this.paper;
+      console.log(tmp);
+      if (this.sort_key[2] == "none" & this.sort_key[3] == "none") {
+        return tmp; 
+      }
+      else if (this.sort_key[2] == "none") {
+        tmp = tmp.filter(t => t.pref === this.sort_key[3] );
+        }
+      else if (this.sort_key[3] == "none" ){
+        tmp = tmp.filter(t => t.field === this.sort_key[2] );
+      }
+      else{
+        tmp = tmp.filter(t => t.pref === this.sort_key[3] & t.field === this.sort_key[2] );
+      }        
 
-  //         break;
-  //       }
-  //     }
-  //     this.orderedObj = tmpObj;
-  //   }
-  // }
+      if(this.sort_key[0] == "desc"){
+        tmp.reverse();
+      }
+      return tmp;
+    }
+  }
 }
 
 </script>

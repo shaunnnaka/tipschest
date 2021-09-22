@@ -1,4 +1,4 @@
- [
+{ "list":[
   {"id":"0","title":"警告音による人の処理能力の変化", "author":"岡山県立倉敷天城高等学校","pref":"岡山県","field":"人間科学","data":"2017","url":"http://www.amaki.okayama-c.ed.jp/wordpress/wp-content/uploads/2019/11/H29_2017_Amaki_AFP_9-min.pdf#page=3"},
 {"id":"1","title":"糸に伝わる音は縦波か横波か", "author":"千葉県立船橋高等学校","pref":"千葉県","field":"物理","data":"2019","url":"https://www.chiba-c.ed.jp/funako/fttp_kousin/ssh/reserch/2019/2019_01p1.pdf"},
 {"id":"2","title":"スティックスリップ現象の発生条件", "author":"千葉県立船橋高等学校","pref":"千葉県","field":"物理","data":"2019","url":"https://www.chiba-c.ed.jp/funako/fttp_kousin/ssh/reserch/2019/2019_02p2.pdf"},
@@ -10,3 +10,4 @@
 {"id":"8","title":"セブン・ブリッジの強度と静止摩擦係数の関係", "author":"千葉県立船橋高等学校","pref":"千葉県","field":"物理","data":"2019","url":"https://www.chiba-c.ed.jp/funako/fttp_kousin/ssh/reserch/2019/2019_08p8.pdf"},
 {"id":"9","title":"複数の波が重なってできる模様", "author":"千葉県立船橋高等学校","pref":"千葉県","field":"物理","data":"2018","url":"https://www.chiba-c.ed.jp/funako/fttp_kousin/ssh/reserch/2018/2018_01p1.pdf"},
 {"id":"10","title":"有色雑音が発生する条件", "author":"千葉県立船橋高等学校","pref":"千葉県","field":"物理","data":"2018","url":"https://www.chiba-c.ed.jp/funako/fttp_kousin/ssh/reserch/2018/2018_02p2.pdf"}]
+}
