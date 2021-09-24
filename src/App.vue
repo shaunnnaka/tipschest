@@ -16,15 +16,16 @@
 }
 
 #nav {
-  padding: 30px;
+  padding-top: 30px;
+  margin-left: 60%;
 }
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #929394;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #ED7D31;
 }
 </style>

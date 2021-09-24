@@ -1,15 +1,11 @@
 <template>
-  <div class='about'><h2>SEARCH</h2>
-  <hr class='accenthr'>
+  <div class='about'><h2 class="search">SEARCH</h2>
   <div id="app">
     <div id="listing" class="paper_list">
-      <p>フリーワード</p><input type="text" v-model="keyword" name="s">
+      <p>フリーワード：</p><input class="keyword select" type="text" v-model="keyword" name="s">
 
-      <select class="select" id="sort_asc" v-model="order">
-        <option value="asc" >昇順</option>
-        <option value="desc" >降順</option>
-      </select>
-      <select name="" id="release" v-model="release">
+      <select name="" id="release" class="select" v-model="release" v-on:change="sort_release(ordered, release)">
+        <option value="none">選択</option>
         <option value="newer">新しい</option>
         <option value="older">古い</option>
       </select>
@@ -85,23 +81,9 @@
         <option value="沖縄県">沖縄県</option>
         </select>
    
-      <button class="go" v-on:click="sortBy(order,release,field, pref)">検索</button>
-      
+      <!-- <button class="go" v-on:click="sortBy(order,release,field, pref)">検索</button>
+       -->
       <div id="itemArea">
-        <div  id="item" v-for="(item, key) in ordered" :key=key>
-          <br>
-          <a target="_blank"  :href="item.url" >
-            <div class="item_block">
-              <div class="paper_title" >{{  item.title  }}</div>
-              <hr>
-              <div class="paper_author" id="item0a">{{  item.author  }} </div>
-              <div class="paper_field"> {{  item.field  }} </div>
-              <div class="paper_data"> {{  item.data  }}  </div>
-             </div>
-          </a>
-        </div>
-      </div>
-      <!-- <div id="itemArea">
         <div  id="item" v-for="(item, key) in search" :key=key>
           <br>
           <a target="_blank"  :href="item.url" >
@@ -114,7 +96,7 @@
              </div>
           </a>
         </div>
-      </div> -->
+      </div>
     </div>
     
     <div id="deeperButtonArea"></div>
@@ -123,31 +105,21 @@
 </template>
 
 <script>
-import p from '@/assets/data/paperList.json'
+import p from '@/assets/data/paperListAll.json'
 export default {
   data(){
     return {
       paper: p.list,
-      order: "asc",
+      order: "none",
       field: "none",
       pref: "none",
-      release: "newer",
-      sort_key: ["none","none","none","none"],
-      sort_asc: true,
+      release: "none",
       keyword: ''
     }
   },
   methods:{
-    sortBy(key1,key2,key3,key4){
-      this.sort_key = [key1,key2,key3,key4];
-      //order,release,field, pref
-      console.log("a");
-      console.log(key1,key2,key3,key4);
-      console.log(this.sort_key);
-      console.log(this.paper.reverse());
-    },
     sort_release(obj, val){
-      if(val == "newer"){
+      if(val == "older"){
         obj.sort((a,b) => {
           return a.data - b.data;
         });
@@ -161,8 +133,8 @@ export default {
   computed: {
     search: function() {
       var tmp = [];
-      for(var i in this.paper) {
-        var p = this.paper[i];
+      for(var i in this.ordered) {
+        var p = this.ordered[i];
         if(p.title.indexOf(this.keyword) !== -1 ||
           p.author.indexOf(this.keyword) !== -1 || 
           p.pref.indexOf(this.keyword) !== -1 ||
@@ -175,22 +147,29 @@ export default {
     ordered: function() {
       var tmp = this.paper;
       console.log(tmp);
-      if (this.sort_key[2] == "none" & this.sort_key[3] == "none") {
+      if (this.field == "none" & this.pref == "none") {
         return tmp; 
       }
-      else if (this.sort_key[2] == "none") {
-        tmp = tmp.filter(t => t.pref === this.sort_key[3] );
+      else if (this.field == "none") {
+        tmp = tmp.filter(t => t.pref === this.pref );
         }
-      else if (this.sort_key[3] == "none" ){
-        tmp = tmp.filter(t => t.field === this.sort_key[2] );
+      else if (this.pref == "none" ){
+        tmp = tmp.filter(t => t.field === this.field );
       }
       else{
-        tmp = tmp.filter(t => t.pref === this.sort_key[3] & t.field === this.sort_key[2] );
+        tmp = tmp.filter(t => t.pref === this.pref & t.field === this.field );
       }        
-
-      if(this.sort_key[0] == "desc"){
-        tmp.reverse();
+      if(this.release == "older"){
+        tmp = tmp.sort((a,b) => {
+          return a.data - b.data;
+        });
+      }else{
+        tmp = tmp.sort((a,b) => {
+          return b.data - a.data;
+        });
       }
+      var a = tmp.filter(t => t.data === this.release);
+      a;
       return tmp;
     }
   }
@@ -221,7 +200,6 @@ body {
   width: 100%;
   overflow-x: hidden;
 }
-
 
 * {
   box-sizing: border-box;
@@ -255,19 +233,14 @@ a:hover {
   color: #aaa;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-
 .about{
   margin-top: 120px;
-  margin-left: 5vw;
+  margin-left: 3vw;
 }
 .about h2{
   font-weight: 500;
   margin-bottom: 0;
+  margin-right: 10px;
 }
 .about .accenthr{
   width: 40px;
@@ -277,52 +250,10 @@ img {
   border-bottom: transparent;
 }
 
-
-
-
-
 .paper_list{
-  font-size: 14px;
-  line-height: 1;
-  margin-bottom: 10px;
-  padding-top: 13px;
-  padding-bottom: 3px;
-  margin-left: 0%;
-  margin-top: 30px;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: baseline;
-  width: 90%;
   background-color: rgba(255, 255, 255, 0.315);
-  border: 2px solid #646464;
-}
-
-.select{
-  margin-right: 1%;
-  margin-left: 1%;
-  margin-bottom: 10px;
-  height: 40px;
-  width: 10%;
-}
-.searchGo{
-  margin-left: 1%;
-  margin-right: 1%;
-  margin-bottom: 10px;
-  height: 40px;
-  width: 15%;
-}
-#item hr{
-  border-top: 1px dashed #bbb;
-  width: 90%;
-  text-decoration: none;
-  border-style: dashed;
-  color: black;
- }
-
-
-.paper_list{
+  height: 100%;
+  margin-top: 30px;
   font-size: 14px;
   line-height: 1;
   margin-bottom: 10px;
@@ -337,7 +268,6 @@ img {
   border: 1px solid #ED7D31;
 }
 
-
 .select{
   margin-right: 1%;
   margin-left: 1%;
@@ -347,24 +277,8 @@ img {
   color: #646464;
   
 }
-.searchGo{
-  margin-left: 1%;
-  margin-right: 1%;
-  margin-bottom: 10px;
-  height: 40px;
-  width: auto;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid #646464;
-  color: #575757;
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: 9px;
-  padding-left: 15px;
-
-}
-
-.searchGo:hover{
-  cursor: pointer;
+.keyword{
+  margin-right: 50px;
 }
 
 #itemArea{
@@ -380,7 +294,7 @@ img {
   padding-top: 10px;
   padding-left: 10px;
   margin: 2% 0% 0% 4%;
-  height: 80px;
+  height: 100px;
   width: 85vw;
   display: flex;
   flex-wrap: wrap;
@@ -392,6 +306,8 @@ img {
 #item hr{
 border-top: 1px dashed #bbb;
 border-bottom: transparent;
+border-left: transparent;
+border-right: transparent;
 width: 80vw;
 text-decoration: none;
 border-style: dashed;
@@ -438,15 +354,6 @@ color: #646464;
   color: #646464;
 }
 
-.scroll-top{
-  position: fixed;
-  opacity: 0.85;
-  bottom: 3%;
-  right: -8%;
-  width: 20%;
-  height: 10%;
-  z-index: 10000;
-}
 .deeper{
   width: auto;
   display: inline-block; 
